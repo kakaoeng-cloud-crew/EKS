@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: db-config
+  namespace: cloudcrew
 data:
   DB_HOST: "10.0.4.16"  # 인스턴스 생성 후 내부 IP 지정
   DB_PORT: "27017"        # 몽고 DB의 포트 번호
