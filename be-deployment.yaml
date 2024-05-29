@@ -13,6 +13,7 @@ spec:
       labels:
         app: back-end
     spec:
+      serviceAccountName: s3-access-account
       containers:
       - name: fastapi-server
         image: 165304734991.dkr.ecr.ap-northeast-1.amazonaws.com/cloudcrew-be:latest

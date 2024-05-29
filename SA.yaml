@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: s3-access-account
+  namespace: cloudcrew
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::165304734991:role/Cloudcrew-oidc-iam

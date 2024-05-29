@@ -1,0 +1,31 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: namespace-helm-operator
+rules:
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["create", "get", "delete", "list", "watch"]
+- apiGroups: ["helm.fluxcd.io"]
+  resources: ["helmreleases"]
+  verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["batch", "extensions"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "watch", "create", "delete", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: namespace-helm-operator-binding
+subjects:
+- kind: ServiceAccount
+  name: s3-access-account
+  namespace: cloudcrew
+roleRef:
+  kind: ClusterRole
+  name: namespace-helm-operator
+  apiGroup: rbac.authorization.k8s.io
+---
